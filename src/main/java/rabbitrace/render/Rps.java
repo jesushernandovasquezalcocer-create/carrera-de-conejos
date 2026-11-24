@@ -9,7 +9,8 @@ import java.util.List;
  * geometry and state so the painter, the pointer path and the tests share one
  * source of truth.
  *
- * <p>The controls are fixed but there is no rectangle for the RPS panel, so`r`n * this is the chosen layout: a parchment panel centred on
+ * <p>The controls are fixed but there is no rectangle for the RPS panel, so
+ * this is the chosen layout: a parchment panel centred on
  * the 1600×900 canvas with no veil, P1's Rock/Paper/Scissors column on the left
  * and P2's on the right. Every hand is a 120×100 plate holding an 84×84 hand
  * sprite ({@code rps.hand.*}) with its label beneath.

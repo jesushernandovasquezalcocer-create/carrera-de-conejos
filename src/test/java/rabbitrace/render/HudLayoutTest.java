@@ -31,7 +31,7 @@ class HudLayoutTest {
         assertTrue(Chrome.HUD.contains(Chrome.TIRAR), "the Tirar button is part of the HUD");
         assertEquals(new Chrome.Rect(1270, 22, 140, 40), Chrome.TIRAR.rect(),
                 "the Tirar button sits at the right end of the top band, 140x40 at (1270, 22)");
-        for (String name : new String[]{"turn", "seed", "gear", "tirar"}) {
+        for (String name : new String[]{"turn", "seed", "gear", "die", "tirar"}) {
             assertTrue(Chrome.HUD.stream().anyMatch(part -> part.name().equals(name)),
                     "the HUD model names '" + name + "'");
         }

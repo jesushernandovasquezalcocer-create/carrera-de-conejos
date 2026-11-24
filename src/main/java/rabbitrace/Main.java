@@ -96,7 +96,8 @@ public final class Main {
                 SwingUtilities.invokeAndWait(() -> {
                     Shell s = new Shell(Strings.text("app.window.title"), () -> Frames.of(match, settings, assets,
                             commands.decorations(), commands.sprites(),
-                            commands.groundShiftX(), commands.groundShiftY()),
+                            commands.groundShiftX(), commands.groundShiftY(),
+                            commands.dieTumbleFraction()),
                             (x, y) -> {
                                 // the shell already converted the
                                 // window pixel; this is the single virtual-pixel path.

@@ -344,7 +344,8 @@ class ClickPathTest {
                 frame.p1Hand(), frame.p2Hand(), frame.p1Committed(), frame.p2Committed(),
                 frame.active(), frame.turn(), frame.roll(), frame.endTurnEnabled(),
                 frame.seed(), frame.rngCursor(), frame.boardHash(), targets, frame.opener(),
-                frame.settings(), frame.seedField(), frame.seedValid(), frame.plan());
+                frame.settings(), frame.seedField(), frame.seedValid(), frame.plan(),
+                frame.dieTumble());
     }
 
     private static int pixel(BufferedImage image, int col, int row) {

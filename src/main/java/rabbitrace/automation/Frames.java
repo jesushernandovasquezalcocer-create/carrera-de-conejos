@@ -58,6 +58,17 @@ public final class Frames {
      */
     public static Frame of(Match match, Settings settings, AssetSource assets, boolean decorations,
                            boolean sprites, int groundShiftX, int groundShiftY) {
+        return of(match, settings, assets, decorations, sprites, groundShiftX, groundShiftY, -1);
+    }
+
+    /**
+     * The same frame with the live die tumble's elapsed fraction. It is negative
+     * for the offline probe, which therefore renders the die at rest with the
+     * rolled face; only the windowed run passes a fraction and animates.
+     * Nothing here reads a clock.
+     */
+    public static Frame of(Match match, Settings settings, AssetSource assets, boolean decorations,
+                           boolean sprites, int groundShiftX, int groundShiftY, double dieTumble) {
         String opener = Match.AJUSTES.equals(match.screen()) ? match.opener() : null;
         return new Frame(
                 match.board(),
@@ -84,7 +95,8 @@ public final class Frames {
                 match.seedFieldValid(),
                 RenderPlan.of(assets.slotSetVersion(), BoardGenerator.VERSION,
                         match.board().seed(), assets.slots(), decorations, sprites,
-                        groundShiftX, groundShiftY));
+                        groundShiftX, groundShiftY),
+                dieTumble);
     }
 
     /** Renders the current frame to a 1600x900 PNG and returns its absolute path. */

@@ -54,6 +54,38 @@ class BeatClockTest {
         }
     }
 
+    /**
+     * The tumble fraction the window paints is the same
+     * beat's clock, not a second one: half the duration is 0.5, and the settle
+     * ends the fraction as well as the phase.
+     */
+    @Test
+    void theLiveTumbleFractionRunsOnTheSameBeatClock() throws Exception {
+        Animations animations = only(Animations.DIE_TUMBLE, 600);
+        TestClock clock = new TestClock();
+        Match match = openingMatch();
+        try (EventLog log = EventLog.open(null)) {
+            Commands commands = controller(match, log, animations, clock);
+            assertEquals(-1, commands.dieTumbleFraction(), 1e-9,
+                    "no tumble is live before Tirar");
+            commands.handle("press tirar");
+            assertEquals(0, commands.dieTumbleFraction(), 1e-9,
+                    "the tumble starts at 0 on its own beat clock");
+
+            clock.advanceMs(300);
+            commands.tick();
+            assertEquals(0.5, commands.dieTumbleFraction(), 1e-6,
+                    "half of the 600 ms beat is half the fraction");
+            assertEquals(Match.ROLLING, match.phase());
+
+            clock.advanceMs(300);
+            commands.tick();
+            assertEquals(Match.AWAIT_MOVE, match.phase());
+            assertEquals(-1, commands.dieTumbleFraction(), 1e-9,
+                    "a settled die has no live tumble fraction");
+        }
+    }
+
     @Test
     void aHopEndsWhenItsDurationElapses() throws Exception {
         Animations animations = only(Animations.HOP, 180);

@@ -20,6 +20,13 @@ import java.util.List;
  * <p>{@code endTurnEnabled} is {@code Terminar turno}'s rule as a
  * frame field: {@code AwaitMove} with at least one step taken. The painter dims
  * the button from this value, so it never asks a {@code Match}.
+ *
+ * <p>{@code dieTumble} is the live window's tumble fraction in {@code [0, 1)},
+ * or negative when no tumble is playing. It is a presentation value, never a
+ * rule: the offline {@code frame} probe passes a negative value, so a
+ * {@code Rolling} frame there draws one fixed face (the rolled value) and stays
+ * deterministic. Only the windowed run animates, from the same beat clock that
+ * releases the tumble.
  */
 public record Frame(
         Board board,
@@ -44,5 +51,6 @@ public record Frame(
         Settings settings,
         String seedField,
         boolean seedValid,
-        RenderPlan plan) {
+        RenderPlan plan,
+        double dieTumble) {
 }

@@ -68,8 +68,9 @@ public final class Commands {
     }
 
     /**
-     * The window the shipped app owns, as seen by the controller. A headless run has none, so {@code fullscreen} only changes the
-     * setting there; the window shell is the only implementation
+          * The window the shipped app owns, as seen by the controller. A headless run
+     * has none, so {@code fullscreen} only changes the setting there; the window
+     * shell is the only implementation
      * and it marshals to the EDT itself.
      */
     public interface WindowHandle {
@@ -128,10 +129,18 @@ public final class Commands {
     private boolean turnEndRunning;
     /** When the current turn-end beat started, in {@link #clock} units. */
     private long turnEndStartedNanos;
-    /** The die tumble is playing after {@code Tirar}; a key/click or the clock settles it. */
-    private boolean rollRunning;
+    /**
+     * The die tumble is playing after {@code Tirar}; a key/click or the clock
+     * settles it. Volatile because the window's paint path reads it on the EDT
+     * while the command and beat-clock threads write it under the controller's
+     * lock: a repaint must never block on that lock, or a fullscreen toggle that
+     * holds it and waits on the EDT deadlocks.
+     */
+    private volatile boolean rollRunning;
     /** When the current tumble started, in {@link #clock} units. */
-    private long rollStartedNanos;
+    private volatile long rollStartedNanos;
+    /** The current tumble's duration in nanoseconds, cached when it starts. */
+    private volatile long rollDurationNanos;
     /** The no-move banner is playing after a settled die; a key/click or the clock ends it. */
     private boolean noMoveRunning;
     /** When the no-move banner appeared, in {@link #clock} units. */
@@ -161,6 +170,14 @@ public final class Commands {
     private long victoryStartedNanos;
     /** When the opening throw's shake started, in {@link #clock} units. */
     private long revealStartedNanos;
+    /**
+     * The live tumble's paint cadence: the beat clock ticks every 10 ms, but a
+     * 1600×900 frame does not need 100 of them a second. 33 ms is ~30 fps, enough
+     * for a 75 ms face cycle to read and far below the settle beat.
+     */
+    private static final long TUMBLE_PAINT_NANOS = 33_000_000L;
+    /** When the live tumble last asked for a repaint, in {@link #clock} units. */
+    private long lastTumblePaintNanos;
 
     public Commands(Match match, Settings settings, EventLog log, Runnable repaint) {
         // A scripted session is on a zero-duration table unless it opts in.
@@ -236,6 +253,46 @@ public final class Commands {
         releaseTurnEndBeat();
         releaseVictoryBeat();
         releaseRevealBeat();
+        repaintTumble();
+    }
+
+    /**
+     * The live tumble's elapsed fraction in {@code [0, 1)}, or negative when no
+     * tumble is playing. It is read from the same {@code dieTumble} beat clock
+     * that releases the die, so the painter's face cycle has no timer of its own.
+     * Presentation only: no rule reads it.
+     *
+     * <p>Deliberately unsynchronized: the window's paint path calls this, and a
+     * fullscreen toggle holds the controller lock across an EDT wait, so taking
+     * that lock here could deadlock a repaint. The three fields it reads are
+     * volatile and the duration is cached when the tumble starts, so the paint
+     * path never touches the animation table.
+     */
+    public double dieTumbleFraction() {
+        long duration = rollDurationNanos;
+        if (!rollRunning || duration <= 0 || !Match.ROLLING.equals(match.phase())) {
+            return -1;
+        }
+        long elapsed = clock.getAsLong() - rollStartedNanos;
+        return Math.max(0, Math.min(0.999, elapsed / (double) duration));
+    }
+
+    /**
+     * Keeps the window repainting while the die tumbles.
+     * The face cycle is meaningless without fresh frames, and the beat clock is
+     * already the only ticker this class owns; a settle or a skip has its own
+     * {@code repaint} call, so this stops with {@code rollRunning}.
+     */
+    private void repaintTumble() {
+        if (!rollRunning || !Match.ROLLING.equals(match.phase())) {
+            return;
+        }
+        long now = clock.getAsLong();
+        if (now - lastTumblePaintNanos < TUMBLE_PAINT_NANOS) {
+            return;
+        }
+        lastTumblePaintNanos = now;
+        repaint.run();
     }
 
     /** The most recent pointer click, or {@code null} before the first one. */
@@ -324,7 +381,8 @@ public final class Commands {
                 return "ok " + audioJson();
             case "obstacle": {
                 // Dev-only scene setup: replace one tile on the current board, so a
-                // scenario can exercise the rules' safety net, which a valid board never produces. Not in state's command
+                                // scenario can exercise the rules' safety net, which a valid board
+                // never produces. Not in state's command
                 // table because it is not play; it changes no rule, it only builds
                 // the board the rule runs on.
                 String[] args = rest.isEmpty() ? new String[0] : rest.split("\\s+");
@@ -582,6 +640,7 @@ public final class Commands {
             // starts after the cue so a slow audio open cannot eat the beat.
             rollRunning = true;
             rollStartedNanos = clock.getAsLong();
+            rollDurationNanos = animations.get(Animations.DIE_TUMBLE) * 1_000_000L;
             // The die is tumbling: no event and no budget until it settles.
             repaint.run();
             return "ok";
@@ -611,7 +670,8 @@ public final class Commands {
     }
 
     /**
-     * The one post-commit path of the opening throw, shared by the {@code rps} command and the hand keys: log the reveal,
+          * The one post-commit path of the opening throw, shared by the {@code rps}
+     * command and the hand keys: log the reveal,
      * shake a decisive throw while {@code rpsShake} has a duration, and fire the
      * reveal cue at the instant the hands show.
      */

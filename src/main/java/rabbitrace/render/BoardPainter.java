@@ -86,6 +86,19 @@ public final class BoardPainter {
     private static final Color UNTARGETABLE = new Color(0x1c, 0x24, 0x18, 96);
 
     /**
+     * The six die faces' pip layouts on a 3x3 grid: each cell is a column and a
+     * row of -1, 0 or 1. Index {@code face - 1}.
+     */
+    private static final int[][][] PIPS = {
+            {{0, 0}},
+            {{-1, -1}, {1, 1}},
+            {{-1, -1}, {0, 0}, {1, 1}},
+            {{-1, -1}, {1, -1}, {-1, 1}, {1, 1}},
+            {{-1, -1}, {1, -1}, {0, 0}, {-1, 1}, {1, 1}},
+            {{-1, -1}, {1, -1}, {-1, 0}, {1, 0}, {-1, 1}, {1, 1}},
+    };
+
+    /**
      * The {@code HandOff} / {@code NoLegalMove} banner:
      * a parchment plate centred over the board, 560x120 at (520, 390). It is a
      * transient beat, so it covers tiles for its phase only; any key or click
@@ -103,7 +116,7 @@ public final class BoardPainter {
 
     /**
      * The live window's pixels: the same board plate {@link #render} draws plus
-     * the surfaces the window owns — currently the opening throw's panel
+     * the surfaces the window owns — currently the opening throw's panel.
      * The panel is drawn by this class at virtual
      * coordinates, so the window scales it exactly like the board.
      *
@@ -1121,6 +1134,67 @@ public final class BoardPainter {
 
         paintTirar(g, f);
         paintEndTurn(g, f);
+        // The die face sits left of Tirar, inside the same band, so
+        // the tumble and the settled pips are painted with the HUD and veiled
+        // with it on Pausa and Victoria. Título draws no HUD at all.
+        paintDie(g, f);
+    }
+
+    /**
+     * The die: a 64×64 parchment face at
+     * {@link Chrome#DIE}, pips in the same ink as the HUD text. While the
+     * tumble is live its face, tilt, bob and pop come from {@link Die#pose},
+     * which the window feeds from the beat clock's own fraction; the offline
+     * probe passes no fraction and gets the fixed rolled face.
+     *
+     * <p>The face is lit while a die is in hand ({@code Rolling},
+     * {@code AwaitMove}, {@code NoLegalMove}) and dim in every other phase,
+     * which is how the HUD's {@code -} reads in {@code AwaitRoll}. Título paints
+     * no HUD, so the die is absent there.
+     */
+    private void paintDie(Graphics2D g, Frame f) {
+        Chrome.Rect r = Chrome.DIE.rect();
+        Die.Pose pose = Die.pose(f.phase(), f.roll(), f.dieTumble());
+        boolean lit = Match.ROLLING.equals(f.phase()) || Match.AWAIT_MOVE.equals(f.phase())
+                || Match.NO_LEGAL_MOVE.equals(f.phase());
+        int alpha = lit ? 255 : 110;
+
+        double cx = r.x() + r.w() / 2.0;
+        double cy = r.y() + r.h() / 2.0;
+        Graphics2D die = (Graphics2D) g.create();
+        try {
+            // Bob first, then tilt and pop around the face's own centre, so the
+            // whole die moves as one piece and never leaves the band.
+            die.translate(0, pose.offsetY());
+            die.translate(cx, cy);
+            die.rotate(Math.toRadians(pose.tilt()));
+            die.scale(pose.scale(), pose.scale());
+            die.translate(-cx, -cy);
+
+            int inset = 4;
+            RoundRectangle2D face = new RoundRectangle2D.Double(
+                    r.x() + inset, r.y() + inset, r.w() - 2 * inset, r.h() - 2 * inset, 12, 12);
+            die.setColor(withAlpha(PARCHMENT, alpha));
+            die.fill(face);
+            die.setColor(withAlpha(PARCHMENT_EDGE, alpha));
+            die.setStroke(new BasicStroke(2f));
+            die.draw(face);
+            die.setStroke(new BasicStroke(1f));
+
+            // Six pips on a 3×3 grid, 14 px apart and 10 px across, in the HUD ink.
+            die.setColor(withAlpha(INK, alpha));
+            for (int[] pip : PIPS[pose.face() - 1]) {
+                die.fill(new Ellipse2D.Double(
+                        cx + pip[0] * 14 - 5, cy + pip[1] * 14 - 5, 10, 10));
+            }
+        } finally {
+            die.dispose();
+        }
+    }
+
+    /** The same colour at a HUD dim level, or the colour itself when it is opaque. */
+    private static Color withAlpha(Color c, int alpha) {
+        return alpha >= 255 ? c : new Color(c.getRed(), c.getGreen(), c.getBlue(), alpha);
     }
 
     /**
@@ -1158,7 +1232,7 @@ public final class BoardPainter {
     }
 
     /**
-     * The two transient banners of as one parchment plate
+     * The two transient banners as one parchment plate
      * over the board: {@code Turno de Azul}/{@code Turno de Marrón} while
      * {@code HandOff} names the next player, and exactly {@code Sin movimiento
      * posible} while {@code NoLegalMove} holds its safety net. The phase is the

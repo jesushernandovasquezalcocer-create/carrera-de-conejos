@@ -14,8 +14,8 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * The opening throw's panel (Â, Â, Â): the pure geometry and
- * state model in {@link Rps}, plus the two things the pixels must prove â€” a
+ * The opening throw's panel: the pure geometry and
+ * state model in {@link Rps}, plus the two things the pixels must prove - a
  * committed hand stays secret until both sides are in, and the
  * panel exists only while the throw is unresolved.
  */

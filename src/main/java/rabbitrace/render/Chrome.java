@@ -71,8 +71,17 @@ public final class Chrome {
      */
     public static final Part TIRAR = new Part("tirar", new Rect(1270, 22, 140, 40));
 
+    /**
+     * The 64×64 die face left of {@code Tirar}, centred on {@code (1180, 45)}:
+     * the visible twin of the HUD's {@code Tirada} number. It sits wholly inside
+     * the top band and clear of the button and the turn text, so it can never
+     * cover a tile centre. Presentation only: the face is a render choice and
+     * the roll is still the match's.
+     */
+    public static final Part DIE = new Part("die", new Rect(1148, 13, 64, 64));
+
     /** Every HUD element, in paint order. */
-    public static final List<Part> HUD = List.of(TURN, SEED, END_TURN, GEAR, TIRAR);
+    public static final List<Part> HUD = List.of(TURN, SEED, END_TURN, GEAR, DIE, TIRAR);
 
     /**
      * Placeholder border scene: trees and rocks filling the margins. Each rect is
