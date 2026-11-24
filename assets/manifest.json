@@ -1,0 +1,111 @@
+{
+  "v": 1,
+  "slotSetVersion": 1,
+  "checkedOn": "2026-11-18",
+  "oracle": {
+    "file": "oracle/board-concept.png",
+    "sha256": "39c5f8f71876fdc27acf2a9d34649d425509dddfbf785abecd722eceb65ddc28"
+  },
+  "artDirection": {
+    "palette": [
+      { "name": "meadow", "hex": "#8B8A1E" },
+      { "name": "meadow.mid", "hex": "#6B7014" },
+      { "name": "meadow.shade", "hex": "#424D11" },
+      { "name": "ink", "hex": "#191B10" },
+      { "name": "meadow.lit", "hex": "#A5A82A" },
+      { "name": "canopy", "hex": "#263413" },
+      { "name": "bark", "hex": "#4F3E2B" },
+      { "name": "gold", "hex": "#C49D47" },
+      { "name": "stone", "hex": "#A99484" },
+      { "name": "water", "hex": "#456076" },
+      { "name": "earth", "hex": "#8E6533" },
+      { "name": "foliage", "hex": "#5C803F" },
+      { "name": "fur.light", "hex": "#E4E2DF" },
+      { "name": "fur.dark", "hex": "#CA7C41" },
+      { "name": "scarf.blue", "hex": "#33568E" },
+      { "name": "scarf.red", "hex": "#8F322D" },
+      { "name": "carrot", "hex": "#E56502" },
+      { "name": "parchment", "hex": "#DFC69B" }
+    ],
+    "camera": { "projection": "orthographic", "tiltDeg": 35, "rabbitTiltDeg": 22 }
+  },
+  "placeholderLicence": {
+    "spdx": "CC0-1.0",
+    "author": "Rabbit Race",
+    "source": "generated:rabbit-race/placeholders",
+    "creditEs": null
+  },
+  "slots": [
+    { "id": "border.plate", "kind": "sprite", "placement": "free", "source": "placeholder", "size": [3200, 1800], "footprint": [1600, 900], "anchor": [0, 0], "layer": 1, "sort": "fixed" },
+
+    { "id": "ground.grass.field", "kind": "sprite", "placement": "field", "source": "placeholder", "size": [2688, 1600], "sample": [168, 160], "layer": 2, "sort": "none" },
+    { "id": "ground.dirt.field", "kind": "sprite", "placement": "field", "source": "placeholder", "size": [2688, 1600], "sample": [168, 160], "layer": 2, "sort": "fixed", "bias": 1 },
+
+    { "id": "deco.flower.a", "kind": "sprite", "placement": "tile", "source": "placeholder", "size": [84, 84], "footprint": [42, 42], "anchor": [0.5, 1.0], "layer": 3, "sort": "none" },
+    { "id": "deco.flower.b", "kind": "sprite", "placement": "tile", "source": "placeholder", "size": [84, 84], "footprint": [42, 42], "anchor": [0.5, 1.0], "layer": 3, "sort": "none" },
+    { "id": "deco.tuft.a", "kind": "sprite", "placement": "tile", "source": "placeholder", "size": [84, 72], "footprint": [42, 36], "anchor": [0.5, 1.0], "layer": 3, "sort": "none" },
+    { "id": "deco.tuft.b", "kind": "sprite", "placement": "tile", "source": "placeholder", "size": [84, 72], "footprint": [42, 36], "anchor": [0.5, 1.0], "layer": 3, "sort": "none" },
+    { "id": "deco.pebble.a", "kind": "sprite", "placement": "tile", "source": "placeholder", "size": [84, 60], "footprint": [42, 30], "anchor": [0.5, 1.0], "layer": 3, "sort": "none" },
+    { "id": "deco.pebble.b", "kind": "sprite", "placement": "tile", "source": "placeholder", "size": [84, 60], "footprint": [42, 30], "anchor": [0.5, 1.0], "layer": 3, "sort": "none" },
+
+    { "id": "prop.rock.a", "kind": "sprite", "placement": "tile", "source": "placeholder", "size": [168, 240], "footprint": [84, 120], "anchor": [0.5, 1.0], "layer": 4, "sort": "row" },
+    { "id": "prop.rock.b", "kind": "sprite", "placement": "tile", "source": "placeholder", "size": [168, 240], "footprint": [84, 120], "anchor": [0.5, 1.0], "layer": 4, "sort": "row" },
+    { "id": "prop.bush.a", "kind": "sprite", "placement": "tile", "source": "placeholder", "size": [168, 240], "footprint": [84, 120], "anchor": [0.5, 1.0], "layer": 4, "sort": "row" },
+    { "id": "prop.bush.b", "kind": "sprite", "placement": "tile", "source": "placeholder", "size": [168, 240], "footprint": [84, 120], "anchor": [0.5, 1.0], "layer": 4, "sort": "row" },
+    { "id": "prop.stump.a", "kind": "sprite", "placement": "tile", "source": "placeholder", "size": [168, 192], "footprint": [84, 96], "anchor": [0.5, 1.0], "layer": 4, "sort": "row" },
+    { "id": "prop.fence.segment", "kind": "sprite", "placement": "tile", "source": "placeholder", "size": [168, 176], "footprint": [84, 88], "anchor": [0.5, 1.0], "layer": 4, "sort": "row", "transforms": ["rot90", "flipX"] },
+    { "id": "prop.fence.post", "kind": "sprite", "placement": "tile", "source": "placeholder", "size": [168, 192], "footprint": [84, 96], "anchor": [0.5, 1.0], "layer": 4, "sort": "row", "transforms": ["rot90"] },
+
+    { "id": "shadow.prop", "kind": "sprite", "placement": "tile", "source": "placeholder", "size": [168, 96], "footprint": [84, 48], "anchor": [0.5, 0.5], "layer": 4, "sort": "row", "bias": -1 },
+    { "id": "shadow.rabbit", "kind": "sprite", "placement": "tile", "source": "placeholder", "size": [126, 72], "footprint": [63, 36], "anchor": [0.5, 0.5], "layer": 6, "sort": "row", "bias": -1 },
+
+    { "id": "goal.carrot.base", "kind": "sprite", "placement": "tile", "source": "placeholder", "size": [168, 240], "footprint": [84, 120], "anchor": [0.5, 1.0], "layer": 7, "sort": "row" },
+    { "id": "goal.carrot.glow", "kind": "sprite", "placement": "tile", "source": "placeholder", "size": [336, 336], "footprint": [168, 168], "anchor": [0.5, 0.5], "layer": 7, "sort": "none", "bias": -1 },
+
+    { "id": "rabbit.blue.idle.n", "kind": "sprite", "placement": "tile", "source": "placeholder", "size": [168, 192], "footprint": [84, 96], "anchor": [0.5, 1.0], "layer": 6, "sort": "row" },
+    { "id": "rabbit.blue.idle.e", "kind": "sprite", "placement": "tile", "source": "placeholder", "size": [168, 192], "footprint": [84, 96], "anchor": [0.5, 1.0], "layer": 6, "sort": "row" },
+    { "id": "rabbit.blue.idle.s", "kind": "sprite", "placement": "tile", "source": "placeholder", "size": [168, 192], "footprint": [84, 96], "anchor": [0.5, 1.0], "layer": 6, "sort": "row" },
+    { "id": "rabbit.blue.idle.w", "kind": "sprite", "placement": "tile", "source": "placeholder", "size": [168, 192], "footprint": [84, 96], "anchor": [0.5, 1.0], "layer": 6, "sort": "row" },
+    { "id": "rabbit.blue.win", "kind": "sprite", "placement": "tile", "source": "placeholder", "size": [168, 192], "footprint": [84, 96], "anchor": [0.5, 1.0], "layer": 6, "sort": "row" },
+    { "id": "rabbit.blue.lose", "kind": "sprite", "placement": "tile", "source": "placeholder", "size": [168, 192], "footprint": [84, 96], "anchor": [0.5, 1.0], "layer": 6, "sort": "row" },
+    { "id": "rabbit.brown.idle.n", "kind": "sprite", "placement": "tile", "source": "placeholder", "size": [168, 192], "footprint": [84, 96], "anchor": [0.5, 1.0], "layer": 6, "sort": "row" },
+    { "id": "rabbit.brown.idle.e", "kind": "sprite", "placement": "tile", "source": "placeholder", "size": [168, 192], "footprint": [84, 96], "anchor": [0.5, 1.0], "layer": 6, "sort": "row" },
+    { "id": "rabbit.brown.idle.s", "kind": "sprite", "placement": "tile", "source": "placeholder", "size": [168, 192], "footprint": [84, 96], "anchor": [0.5, 1.0], "layer": 6, "sort": "row" },
+    { "id": "rabbit.brown.idle.w", "kind": "sprite", "placement": "tile", "source": "placeholder", "size": [168, 192], "footprint": [84, 96], "anchor": [0.5, 1.0], "layer": 6, "sort": "row" },
+    { "id": "rabbit.brown.win", "kind": "sprite", "placement": "tile", "source": "placeholder", "size": [168, 192], "footprint": [84, 96], "anchor": [0.5, 1.0], "layer": 6, "sort": "row" },
+    { "id": "rabbit.brown.lose", "kind": "sprite", "placement": "tile", "source": "placeholder", "size": [168, 192], "footprint": [84, 96], "anchor": [0.5, 1.0], "layer": 6, "sort": "row" },
+
+    { "id": "rps.hand.rock", "kind": "sprite", "placement": "free", "source": "placeholder", "size": [336, 336], "footprint": [168, 168], "anchor": [0.5, 0.5], "layer": 8, "sort": "none" },
+    { "id": "rps.hand.paper", "kind": "sprite", "placement": "free", "source": "placeholder", "size": [336, 336], "footprint": [168, 168], "anchor": [0.5, 0.5], "layer": 8, "sort": "none" },
+    { "id": "rps.hand.scissors", "kind": "sprite", "placement": "free", "source": "placeholder", "size": [336, 336], "footprint": [168, 168], "anchor": [0.5, 0.5], "layer": 8, "sort": "none" },
+
+    { "id": "dice.face.1", "kind": "sprite", "placement": "free", "source": "procedural", "footprint": [84, 84], "anchor": [0.5, 0.5], "layer": 8, "sort": "none" },
+    { "id": "dice.face.2", "kind": "sprite", "placement": "free", "source": "procedural", "footprint": [84, 84], "anchor": [0.5, 0.5], "layer": 8, "sort": "none" },
+    { "id": "dice.face.3", "kind": "sprite", "placement": "free", "source": "procedural", "footprint": [84, 84], "anchor": [0.5, 0.5], "layer": 8, "sort": "none" },
+    { "id": "dice.face.4", "kind": "sprite", "placement": "free", "source": "procedural", "footprint": [84, 84], "anchor": [0.5, 0.5], "layer": 8, "sort": "none" },
+    { "id": "dice.face.5", "kind": "sprite", "placement": "free", "source": "procedural", "footprint": [84, 84], "anchor": [0.5, 0.5], "layer": 8, "sort": "none" },
+    { "id": "dice.face.6", "kind": "sprite", "placement": "free", "source": "procedural", "footprint": [84, 84], "anchor": [0.5, 0.5], "layer": 8, "sort": "none" },
+
+    { "id": "ui.panel", "kind": "sprite", "placement": "free", "source": "placeholder", "size": [240, 240], "anchor": [0, 0], "layer": 8, "sort": "none", "nineSlice": [48, 48, 48, 48] },
+    { "id": "ui.button.normal", "kind": "sprite", "placement": "free", "source": "placeholder", "size": [240, 96], "anchor": [0, 0], "layer": 8, "sort": "none", "nineSlice": [32, 32, 32, 32] },
+    { "id": "ui.button.hover", "kind": "sprite", "placement": "free", "source": "placeholder", "size": [240, 96], "anchor": [0, 0], "layer": 8, "sort": "none", "nineSlice": [32, 32, 32, 32] },
+    { "id": "ui.button.pressed", "kind": "sprite", "placement": "free", "source": "placeholder", "size": [240, 96], "anchor": [0, 0], "layer": 8, "sort": "none", "nineSlice": [32, 32, 32, 32] },
+    { "id": "ui.button.disabled", "kind": "sprite", "placement": "free", "source": "placeholder", "size": [240, 96], "anchor": [0, 0], "layer": 8, "sort": "none", "nineSlice": [32, 32, 32, 32] },
+    { "id": "ui.banner", "kind": "sprite", "placement": "free", "source": "placeholder", "size": [480, 160], "anchor": [0, 0], "layer": 8, "sort": "none", "nineSlice": [40, 40, 40, 40] },
+    { "id": "ui.logo", "kind": "sprite", "placement": "free", "source": "placeholder", "size": [640, 240], "anchor": [0, 0], "layer": 8, "sort": "none" }
+  ],
+  "audio": [
+    { "id": "ui.click", "synth": "click", "group": "sfx", "loop": false, "gainDb": 0 },
+    { "id": "sfx.turn.change", "synth": "turn-change", "group": "sfx", "loop": false, "gainDb": 0 },
+    { "id": "sfx.hop", "synth": "hop", "group": "sfx", "loop": false, "gainDb": 0 },
+    { "id": "sfx.bump.blocked", "synth": "bump-blocked", "group": "sfx", "loop": false, "gainDb": 0 },
+    { "id": "sfx.dice.roll", "synth": "dice-roll", "group": "sfx", "loop": false, "gainDb": 0 },
+    { "id": "sfx.dice.settle", "synth": "dice-settle", "group": "sfx", "loop": false, "gainDb": 0 },
+    { "id": "sfx.rps.reveal", "synth": "rps-reveal", "group": "sfx", "loop": false, "gainDb": 0 },
+    { "id": "sfx.win", "synth": "win", "group": "sfx", "loop": false, "gainDb": 0 },
+    { "id": "amb.nature.loop", "synth": "silence", "group": "ambience", "loop": true,
+      "loopStartMs": 0, "loopEndMs": 1000, "gainDb": 0 },
+    { "id": "music.menu", "synth": "silence", "group": "music", "loop": true,
+      "loopStartMs": 0, "loopEndMs": 1000, "gainDb": 0 }
+  ]
+}

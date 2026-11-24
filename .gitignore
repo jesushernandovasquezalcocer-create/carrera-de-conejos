@@ -1,0 +1,33 @@
+# Java build output
+target/
+build/
+out/
+bin/
+*.class
+*.jar
+*.war
+
+# Gradle: keep the wrapper jar, ignore everything else it generates
+.gradle/
+!gradle/wrapper/gradle-wrapper.jar
+
+# IDE / editor
+.idea/
+*.iml
+.vscode/
+.settings/
+.classpath
+.project
+
+# OS noise
+Thumbs.db
+.DS_Store
+
+# Local config and env
+*.local
+.env
+
+# Local captures and downloaded reference material
+shots/
+reference/
+*.log

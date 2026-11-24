@@ -1,0 +1,341 @@
+{
+  "placeholderVersion": 1,
+  "slots": [
+    {
+      "id": "border.plate",
+      "file": "border.plate.png",
+      "size": [
+        3200,
+        1800
+      ]
+    },
+    {
+      "id": "ground.grass.field",
+      "file": "ground.grass.field.png",
+      "size": [
+        2688,
+        1600
+      ]
+    },
+    {
+      "id": "ground.dirt.field",
+      "file": "ground.dirt.field.png",
+      "size": [
+        2688,
+        1600
+      ]
+    },
+    {
+      "id": "deco.flower.a",
+      "file": "deco.flower.a.png",
+      "size": [
+        84,
+        84
+      ]
+    },
+    {
+      "id": "deco.flower.b",
+      "file": "deco.flower.b.png",
+      "size": [
+        84,
+        84
+      ]
+    },
+    {
+      "id": "deco.tuft.a",
+      "file": "deco.tuft.a.png",
+      "size": [
+        84,
+        72
+      ]
+    },
+    {
+      "id": "deco.tuft.b",
+      "file": "deco.tuft.b.png",
+      "size": [
+        84,
+        72
+      ]
+    },
+    {
+      "id": "deco.pebble.a",
+      "file": "deco.pebble.a.png",
+      "size": [
+        84,
+        60
+      ]
+    },
+    {
+      "id": "deco.pebble.b",
+      "file": "deco.pebble.b.png",
+      "size": [
+        84,
+        60
+      ]
+    },
+    {
+      "id": "prop.rock.a",
+      "file": "prop.rock.a.png",
+      "size": [
+        168,
+        240
+      ]
+    },
+    {
+      "id": "prop.rock.b",
+      "file": "prop.rock.b.png",
+      "size": [
+        168,
+        240
+      ]
+    },
+    {
+      "id": "prop.bush.a",
+      "file": "prop.bush.a.png",
+      "size": [
+        168,
+        240
+      ]
+    },
+    {
+      "id": "prop.bush.b",
+      "file": "prop.bush.b.png",
+      "size": [
+        168,
+        240
+      ]
+    },
+    {
+      "id": "prop.stump.a",
+      "file": "prop.stump.a.png",
+      "size": [
+        168,
+        192
+      ]
+    },
+    {
+      "id": "prop.fence.segment",
+      "file": "prop.fence.segment.png",
+      "size": [
+        168,
+        176
+      ]
+    },
+    {
+      "id": "prop.fence.post",
+      "file": "prop.fence.post.png",
+      "size": [
+        168,
+        192
+      ]
+    },
+    {
+      "id": "shadow.prop",
+      "file": "shadow.prop.png",
+      "size": [
+        168,
+        96
+      ]
+    },
+    {
+      "id": "shadow.rabbit",
+      "file": "shadow.rabbit.png",
+      "size": [
+        126,
+        72
+      ]
+    },
+    {
+      "id": "goal.carrot.base",
+      "file": "goal.carrot.base.png",
+      "size": [
+        168,
+        240
+      ]
+    },
+    {
+      "id": "goal.carrot.glow",
+      "file": "goal.carrot.glow.png",
+      "size": [
+        336,
+        336
+      ]
+    },
+    {
+      "id": "rabbit.blue.idle.n",
+      "file": "rabbit.blue.idle.n.png",
+      "size": [
+        168,
+        192
+      ]
+    },
+    {
+      "id": "rabbit.blue.idle.e",
+      "file": "rabbit.blue.idle.e.png",
+      "size": [
+        168,
+        192
+      ]
+    },
+    {
+      "id": "rabbit.blue.idle.s",
+      "file": "rabbit.blue.idle.s.png",
+      "size": [
+        168,
+        192
+      ]
+    },
+    {
+      "id": "rabbit.blue.idle.w",
+      "file": "rabbit.blue.idle.w.png",
+      "size": [
+        168,
+        192
+      ]
+    },
+    {
+      "id": "rabbit.blue.win",
+      "file": "rabbit.blue.win.png",
+      "size": [
+        168,
+        192
+      ]
+    },
+    {
+      "id": "rabbit.blue.lose",
+      "file": "rabbit.blue.lose.png",
+      "size": [
+        168,
+        192
+      ]
+    },
+    {
+      "id": "rabbit.brown.idle.n",
+      "file": "rabbit.brown.idle.n.png",
+      "size": [
+        168,
+        192
+      ]
+    },
+    {
+      "id": "rabbit.brown.idle.e",
+      "file": "rabbit.brown.idle.e.png",
+      "size": [
+        168,
+        192
+      ]
+    },
+    {
+      "id": "rabbit.brown.idle.s",
+      "file": "rabbit.brown.idle.s.png",
+      "size": [
+        168,
+        192
+      ]
+    },
+    {
+      "id": "rabbit.brown.idle.w",
+      "file": "rabbit.brown.idle.w.png",
+      "size": [
+        168,
+        192
+      ]
+    },
+    {
+      "id": "rabbit.brown.win",
+      "file": "rabbit.brown.win.png",
+      "size": [
+        168,
+        192
+      ]
+    },
+    {
+      "id": "rabbit.brown.lose",
+      "file": "rabbit.brown.lose.png",
+      "size": [
+        168,
+        192
+      ]
+    },
+    {
+      "id": "rps.hand.rock",
+      "file": "rps.hand.rock.png",
+      "size": [
+        336,
+        336
+      ]
+    },
+    {
+      "id": "rps.hand.paper",
+      "file": "rps.hand.paper.png",
+      "size": [
+        336,
+        336
+      ]
+    },
+    {
+      "id": "rps.hand.scissors",
+      "file": "rps.hand.scissors.png",
+      "size": [
+        336,
+        336
+      ]
+    },
+    {
+      "id": "ui.panel",
+      "file": "ui.panel.png",
+      "size": [
+        240,
+        240
+      ]
+    },
+    {
+      "id": "ui.button.normal",
+      "file": "ui.button.normal.png",
+      "size": [
+        240,
+        96
+      ]
+    },
+    {
+      "id": "ui.button.hover",
+      "file": "ui.button.hover.png",
+      "size": [
+        240,
+        96
+      ]
+    },
+    {
+      "id": "ui.button.pressed",
+      "file": "ui.button.pressed.png",
+      "size": [
+        240,
+        96
+      ]
+    },
+    {
+      "id": "ui.button.disabled",
+      "file": "ui.button.disabled.png",
+      "size": [
+        240,
+        96
+      ]
+    },
+    {
+      "id": "ui.banner",
+      "file": "ui.banner.png",
+      "size": [
+        480,
+        160
+      ]
+    },
+    {
+      "id": "ui.logo",
+      "file": "ui.logo.png",
+      "size": [
+        640,
+        240
+      ]
+    }
+  ]
+}

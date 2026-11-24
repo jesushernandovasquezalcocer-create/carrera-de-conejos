@@ -1,0 +1,6 @@
+# Generated asset manifests are compared byte-for-byte with what their
+# generators write. A CRLF checkout breaks that on Windows, so pin them to LF
+# regardless of core.autocrlf.
+assets/*.json          text eol=lf
+assets/**/*.json       text eol=lf
+assets/**/*.txt        text eol=lf
